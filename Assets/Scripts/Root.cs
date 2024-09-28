@@ -5,7 +5,7 @@ using UnityEngine;
 public class Root : MonoBehaviour
 {
     [SerializeField] private BootsTrap _bootrap;
-    [SerializeField] private TextClockInitializer _textClock;
+    [SerializeField] private TextClock _textClock;
 
     private DateTime _time;
 
