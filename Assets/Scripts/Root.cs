@@ -6,6 +6,7 @@ public class Root : MonoBehaviour
 {
     [SerializeField] private BootsTrap _bootrap;
     [SerializeField] private TextClock _textClock;
+    [SerializeField] private ClassicClock _clock;
 
     private DateTime _time;
 
@@ -25,5 +26,6 @@ public class Root : MonoBehaviour
         _time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(data.Time);
         _time = _time.ToLocalTime();
         _textClock.Init(_time);
+        _clock.Init(_time);
     }
 }
