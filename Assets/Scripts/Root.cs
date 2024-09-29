@@ -17,12 +17,14 @@ public class Root : MonoBehaviour
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private Button _inputButton;
     [SerializeField] private Button _applyButton;
+    [SerializeField] private SelectionEffect _selectionEffect;
 
     private DateTime _time;
     private bool _isWaitingInput;
 
     private void Awake()
     {
+        _editButton.interactable = false;
         _timeEditLogic.Disable();
         _inputButton.interactable = false;
         _applyButton.interactable = false;
@@ -56,6 +58,7 @@ public class Root : MonoBehaviour
                 _textClock.Init(_time);
                 _clock.Init(_time);
                 _synchronization.UnPause();
+                _selectionEffect.Stop();
             }
         }
         else
@@ -70,6 +73,7 @@ public class Root : MonoBehaviour
                 _textClock.Init(_time);
                 _clock.Init(_time);
                 _synchronization.UnPause();
+                _selectionEffect.Stop();
             }
         }
     }
@@ -80,6 +84,7 @@ public class Root : MonoBehaviour
         _timeEditLogic.Disable();
         _arrowMover.enabled = false;
         _isWaitingInput = true;
+        _selectionEffect.Stop();
     }
 
     private void OnEditButtonClick()
@@ -92,10 +97,12 @@ public class Root : MonoBehaviour
         _arrowMover.enabled = true;
         _inputButton.interactable = true;
         _applyButton.interactable = true;
+        _selectionEffect.Play();
     }
 
     private void OnDataReceived(string result)
     {
+        _editButton.interactable = true;
         RequestResult data = JsonConvert.DeserializeObject<RequestResult>(result);
         _time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(data.Time);
         _time = _time.ToLocalTime();

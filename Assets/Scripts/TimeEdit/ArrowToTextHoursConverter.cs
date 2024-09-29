@@ -29,7 +29,7 @@ public class ArrowToTextHoursConverter : MonoBehaviour
             _additiveValue = Circle / Divisor;
 
         result = rotation + _additiveValue;
-        _text.text = result.ToString("0.");
+        _text.text = result.ToString("00.");
         _previoutValue = result;
     }
 }
