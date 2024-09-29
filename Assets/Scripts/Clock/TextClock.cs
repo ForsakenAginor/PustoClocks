@@ -43,9 +43,9 @@ public class TextClock : MonoBehaviour, ITimeStopper
         if (_hours >= HoursInDay)
             _hours %= HoursInDay;
 
-        _secondsView.text = _seconds.ToString("0.");
-        _minutesView.text = _minutes.ToString("0.");
-        _hoursView.text = _hours.ToString("0.");
+        _secondsView.text = _seconds.ToString("00.");
+        _minutesView.text = _minutes.ToString("00.");
+        _hoursView.text = _hours.ToString("00.");
     }
 
     public void Init(DateTime time)

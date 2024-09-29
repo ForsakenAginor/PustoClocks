@@ -12,6 +12,6 @@ public class ArrowToTextMinutesConverter : MonoBehaviour
     private void Update()
     {
         int rotation = (int)Mathf.Abs(Circle - _arrow.rotation.eulerAngles.z) / _multiplier;
-        _text.text = rotation.ToString("0.");
+        _text.text = rotation.ToString("00.");
     }
 }
