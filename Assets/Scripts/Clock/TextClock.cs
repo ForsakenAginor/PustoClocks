@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TextClock : MonoBehaviour
+public class TextClock : MonoBehaviour, ITimeStopper
 {
     private const int SecondsInMinute = 60;
     private const int MinutesInHour = 60;
@@ -16,6 +16,10 @@ public class TextClock : MonoBehaviour
     private float _seconds;
     private float _minutes;
     private float _hours;
+
+    public void Pause() => _isWorking = false;
+
+    public void UnPause() => _isWorking = true;
 
     private void Update()
     {
@@ -50,5 +54,23 @@ public class TextClock : MonoBehaviour
         _minutes = time.Minute;
         _hours = time.Hour;
         _isWorking = true;
+    }
+
+    public bool TryGetTime(out DateTime time)
+    {
+        time = DateTime.MinValue;
+        int hours, minutes, seconds;
+
+        if (Int32.TryParse(_hoursView.text, out hours) == false)
+            return false;
+
+        if (Int32.TryParse(_minutesView.text, out minutes) == false)
+            return false;
+
+        if (Int32.TryParse(_secondsView.text, out seconds) == false)
+            return false;
+
+        time = new DateTime(1970, 1, 1, hours, minutes, seconds);
+        return true;
     }
 }

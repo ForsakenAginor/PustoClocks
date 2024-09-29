@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class ClassicClock : MonoBehaviour
+public class ClassicClock : MonoBehaviour, ITimeStopper
 {
     private const int SecondsInMinute = 60;
     private const int MinutesInHour = 60;
@@ -17,14 +17,22 @@ public class ClassicClock : MonoBehaviour
     private Tween _minutesTween;
     private Tween _hoursTween;
 
+    public void Pause() => StopAnimations();
+
+    public void UnPause() => Launch();
+
     public void Init(DateTime time)
+    {
+        StopAnimations();
+        SetPositions(time);
+        Launch();
+    }
+
+    private void StopAnimations()
     {
         _secondsTween.Kill();
         _minutesTween.Kill();
         _hoursTween.Kill();
-
-        SetPositions(time);
-        Launch();
     }
 
     private void SetPositions(DateTime time)

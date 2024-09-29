@@ -2,17 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
-public class Synchronization : MonoBehaviour
+public class Synchronization : MonoBehaviour, ITimeStopper, IDataReceiver
 {
     [SerializeField] private float _frequency;
 
     private WebRequestSender _sender = new WebRequestSender();
+    private Coroutine _coroutine;
 
-    public event Action<string> DataSynchronized;
+    public event Action<string> DataReceived;
+
+    public void Pause() => StopCoroutine(_coroutine);
+
+    public void UnPause() => _coroutine = StartCoroutine(CreateSynchonizationSchedule());
 
     private void Start()
     {
-        StartCoroutine(CreateSynchonizationSchedule());
+        _coroutine = StartCoroutine(CreateSynchonizationSchedule());
     }
 
     private IEnumerator CreateSynchonizationSchedule()
@@ -23,7 +28,7 @@ public class Synchronization : MonoBehaviour
         while (isWorking)
         {
             yield return delay;
-            _sender.SendWebRequest(DataSynchronized);
+            yield return _sender.SendWebRequest(DataReceived);
         }
     }
 }
