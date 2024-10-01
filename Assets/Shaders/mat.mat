@@ -50,8 +50,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _IsGlowing: 0
     - _IsSelected: 0
     m_Colors:
+    - _GlowingColor: {r: 0.119999886, g: 12, b: 11.009998, a: 1}
     - _RegularColor: {r: 0.3962264, g: 0.3962264, b: 0.37566748, a: 0}
-    - _SelectedColor: {r: 0.04699192, g: 9.962264, b: 9.099524, a: 0}
+    - _SelectedColor: {r: 0.04699192, g: 9.962264, b: 9.099524, a: 1}
   m_BuildTextureStacks: []

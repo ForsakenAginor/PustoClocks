@@ -13,6 +13,11 @@ public class SelectionEffect : MonoBehaviour
         _material = GetComponent<Image>().material;
     }
 
+    private void OnDisable()
+    {
+        _material.SetInt(IsSelectedParameter, 0);
+    }
+
     public void Play()
     {
         _material.SetInt(IsSelectedParameter, 1);

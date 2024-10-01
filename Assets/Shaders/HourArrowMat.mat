@@ -53,5 +53,5 @@ Material:
     - _IsGlowing: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 0}
-    - _GlowingColor: {r: 0, g: 2.4006958, b: 16, a: 0}
+    - _GlowingColor: {r: 0, g: 2.4006958, b: 16, a: 1}
   m_BuildTextureStacks: []

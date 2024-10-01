@@ -39,7 +39,8 @@ public class ArrowMover : MonoBehaviour, IDragHandler
     private void Start()
     {
         _arrow = GetComponent<RectTransform>();
-        _position = _arrow.position;
+        //_position = _arrow.position;
+        _position = Camera.main.WorldToScreenPoint(_arrow.position);
         enabled = false;
     }
 }
